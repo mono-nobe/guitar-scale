@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mono-nobe/guitar-scale/issues"
   },
-  "homepage": "https://github.com/mono-nobe/guitar-scale#readme"
+  "homepage": "https://github.com/mono-nobe/guitar-scale#readme",
+  "dependencies": {
+    "enquirer": "^2.3.6"
+  }
 }
