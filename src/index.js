@@ -136,10 +136,8 @@ async function selectTone() {
 async function selectScale(selectedTone) {
   const scaleSelector = new Select({
     name: "scale",
-    message: isMajor(selectedTone)
-      ? "Pick a major scale"
-      : "Pick a minor scale",
-    choices: isMajor(selectedTone) ? majorScales : minorScales,
+    message: "Pick a scale",
+    choices: selectedTone === "major" ? majorScales : minorScales,
   });
 
   return await scaleSelector
@@ -203,10 +201,6 @@ async function calcFingerboards(selectedScale, selectedInterval) {
   }
 
   return await scale.shiftScale(selectedInterval);
-}
-
-function isMajor(tone) {
-  return tone === "major";
 }
 
 main();
