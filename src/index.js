@@ -1,7 +1,9 @@
 #! /usr/bin/env node
 
 const { Select, prompt } = require("enquirer");
-const MinorPentatonic = require("./scale/minorPentatonic");
+
+const requireDirectory = require("require-directory");
+const scalesDir = requireDirectory(module, "./scales");
 
 const keys = [
   {
@@ -140,34 +142,34 @@ async function calcFingerboards(selectedScale, selectedInterval) {
   let scale;
   switch (selectedScale) {
     case "lydian":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "major":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "major blues":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "major pentatonic":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "mixolydian":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "harmonic minor":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "melodic minor":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "minor":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "minor blues":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     case "minor pentatonic":
-      scale = new MinorPentatonic();
+      scale = new scalesDir.minor.minorPentatonic();
       break;
     default:
       console.error(`this scale is undefined. scale: ${scale}`);

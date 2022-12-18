@@ -1,4 +1,4 @@
-const Scale = require("./scale");
+const Scale = require("../scale");
 
 module.exports = class Major extends Scale {
   testMajor() {
