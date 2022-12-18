@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mono-nobe/guitar-scale#readme",
   "dependencies": {
-    "enquirer": "^2.3.6"
+    "enquirer": "^2.3.6",
+    "require-directory": "^2.1.1"
   }
 }
