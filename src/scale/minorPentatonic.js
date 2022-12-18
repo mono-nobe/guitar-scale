@@ -10,9 +10,4 @@ module.exports = class MinorPentatonic extends Scale {
     this.fingerboards.push("---|-●-|---|-◎-|---|---|-●-|---|-●-|---|-●-|---");
     this.fingerboards.push("---|-●-|---|-●-|---|---|-●-|---|-◎-|---|---|-●-");
   }
-
-  penta() {
-    console.log("### penta ###");
-    console.log(this.scale);
-  }
 };

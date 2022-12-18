@@ -1,11 +1,6 @@
 module.exports = class Scale {
   constructor() {
-    this.scale = "Scaleeeeeee!!!!!";
     this.fingerboards = [];
-  }
-
-  test() {
-    console.log("this is scale.");
   }
 
   shiftScale(interval) {
