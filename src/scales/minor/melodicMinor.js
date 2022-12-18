@@ -1,10 +1,10 @@
 const Scale = require("../scale");
 
-module.exports = class MinorPentatonic extends Scale {
+module.exports = class MelodicMinor extends Scale {
   constructor() {
     super();
     this.fingerboards.push([
-      "-●-",
+      "---",
       "-●-",
       "---",
       "-●-",
@@ -15,33 +15,19 @@ module.exports = class MinorPentatonic extends Scale {
       "-◎-",
       "---",
       "-●-",
-      "---",
+      "-●-",
     ]);
     this.fingerboards.push([
       "-●-",
       "-◎-",
       "---",
       "-●-",
-      "---",
-      "-●-",
       "-●-",
       "---",
       "-●-",
       "---",
       "-●-",
       "---",
-    ]);
-    this.fingerboards.push([
-      "-●-",
-      "---",
-      "-●-",
-      "---",
-      "-●-",
-      "-◎-",
-      "---",
-      "-●-",
-      "---",
-      "-●-",
       "-●-",
       "---",
     ]);
@@ -49,23 +35,9 @@ module.exports = class MinorPentatonic extends Scale {
       "-●-",
       "---",
       "-●-",
-      "-●-",
-      "---",
-      "-●-",
-      "---",
-      "-●-",
       "---",
       "-●-",
       "-◎-",
-      "---",
-    ]);
-    this.fingerboards.push([
-      "-●-",
-      "---",
-      "-●-",
-      "-◎-",
-      "---",
-      "-●-",
       "---",
       "-●-",
       "-●-",
@@ -82,10 +54,38 @@ module.exports = class MinorPentatonic extends Scale {
       "-●-",
       "---",
       "-●-",
+      "---",
+      "-●-",
+      "-◎-",
+      "---",
+    ]);
+    this.fingerboards.push([
+      "-●-",
+      "---",
+      "-●-",
       "-◎-",
       "---",
       "-●-",
+      "-●-",
       "---",
+      "-●-",
+      "---",
+      "-●-",
+      "---",
+    ]);
+    this.fingerboards.push([
+      "---",
+      "-●-",
+      "---",
+      "-●-",
+      "---",
+      "-●-",
+      "---",
+      "-●-",
+      "-◎-",
+      "---",
+      "-●-",
+      "-●-",
     ]);
   }
 };

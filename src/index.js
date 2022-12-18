@@ -85,6 +85,8 @@ async function main() {
     fingerboard.push(fingerboard[0]);
     console.log(fingerboard.join("|"));
   });
+
+  // 24フレット表示もできそうか？
   console.log("   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12");
 }
 
@@ -142,31 +144,31 @@ async function calcFingerboards(selectedScale, selectedInterval) {
   let scale;
   switch (selectedScale) {
     case "lydian":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.major.lydian();
       break;
     case "major":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.major.major();
       break;
     case "major blues":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.major.majorBlues();
       break;
     case "major pentatonic":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.major.majorPentatonic();
       break;
     case "mixolydian":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.major.mixolydian();
       break;
     case "harmonic minor":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.minor.harmonicMinor();
       break;
     case "melodic minor":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.minor.melodicMinor();
       break;
     case "minor":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.minor.minor();
       break;
     case "minor blues":
-      scale = new scalesDir.minor.minorPentatonic();
+      scale = new scalesDir.minor.minorBlues();
       break;
     case "minor pentatonic":
       scale = new scalesDir.minor.minorPentatonic();
