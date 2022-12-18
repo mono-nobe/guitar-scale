@@ -70,24 +70,34 @@ const minorScales = [
   "minor blues",
   "minor pentatonic",
 ];
+const fretNum = ["12", "24"];
 
 async function main() {
   const selectedKey = await selectKey();
   const selectedTone = await selectTone();
   const selectedScale = await selectScale(selectedTone);
-
   const fingerboards = await calcFingerboards(
     selectedScale,
     selectedKey.interval
   );
+  const selectedFretNum = await selectFretNum();
 
   await fingerboards.forEach((fingerboard) => {
+    if (selectedFretNum === "24") {
+      fingerboard = fingerboard.concat(fingerboard);
+    }
     fingerboard.push(fingerboard[0]);
     console.log(fingerboard.join("|"));
   });
 
   // 24フレット表示もできそうか？
-  console.log("   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12");
+  if (selectedFretNum === "24") {
+    console.log(
+      "   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12| 13| 14| 15| 16| 17| 18| 19| 20| 21| 22| 23| 24"
+    );
+  } else {
+    console.log("   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12");
+  }
 }
 
 async function selectKey() {
@@ -133,6 +143,21 @@ async function selectScale(selectedTone) {
   });
 
   return await scaleSelector
+    .run()
+    .then((answer) => {
+      return answer;
+    })
+    .catch(console.error);
+}
+
+async function selectFretNum() {
+  const fretNumSelector = new Select({
+    name: "fretNum",
+    message: "Pick a number of frets",
+    choices: fretNum,
+  });
+
+  return await fretNumSelector
     .run()
     .then((answer) => {
       return answer;
