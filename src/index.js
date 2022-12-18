@@ -73,6 +73,8 @@ const minorScales = [
 const fretNum = ["12", "24"];
 
 async function main() {
+  console.log("This helps you memorize guitar scales!!!\n");
+
   const selectedKey = await selectKey();
   const selectedTone = await selectTone();
   const selectedScale = await selectScale(selectedTone);
@@ -82,6 +84,7 @@ async function main() {
   );
   const selectedFretNum = await selectFretNum();
 
+  console.log("\nEnjoy your practice!!!!!\n");
   await fingerboards.forEach((fingerboard) => {
     if (selectedFretNum === "24") {
       fingerboard = fingerboard.concat(fingerboard);
@@ -90,7 +93,6 @@ async function main() {
     console.log(fingerboard.join("|"));
   });
 
-  // 24フレット表示もできそうか？
   if (selectedFretNum === "24") {
     console.log(
       "   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12| 13| 14| 15| 16| 17| 18| 19| 20| 21| 22| 23| 24"
