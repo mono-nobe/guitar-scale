@@ -5,19 +5,17 @@ module.exports = class Scale {
 
   shiftScale(interval) {
     return new Promise((resolve) => {
-      resolve(
-        this.fingerboards.map((fingerboard) => {
-          const fingerboardPoints = fingerboard.split("|");
+      if (interval === 0) {
+        resolve(this.fingerboards);
+      }
 
-          return (
-            fingerboardPoints
-              .slice(fingerboardPoints.length - interval)
-              .join("|") +
-            "|" +
-            fingerboardPoints
-              .slice(0, fingerboardPoints.length - interval)
-              .join("|")
-          );
+      resolve(
+        this.fingerboards.map((fingerboardPoints) => {
+          return fingerboardPoints
+            .slice(fingerboardPoints.length - interval)
+            .concat(
+              fingerboardPoints.slice(0, fingerboardPoints.length - interval)
+            );
         })
       );
     });

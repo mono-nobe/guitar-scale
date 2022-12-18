@@ -3,58 +3,90 @@
 const { Select, prompt } = require("enquirer");
 const MinorPentatonic = require("./scale/minorPentatonic");
 
-async function main() {
-  const keys = [
-    {
-      name: "C",
-      interval: 0,
-    },
-    {
-      name: "C#",
-      interval: 1,
-    },
-    {
-      name: "D",
-      interval: 2,
-    },
-    {
-      name: "D#",
-      interval: 3,
-    },
-    {
-      name: "E",
-      interval: 4,
-    },
-    {
-      name: "F",
-      interval: 5,
-    },
-    {
-      name: "F#",
-      interval: 6,
-    },
-    {
-      name: "G",
-      interval: 7,
-    },
-    {
-      name: "G#",
-      interval: 8,
-    },
-    {
-      name: "A",
-      interval: 9,
-    },
-    {
-      name: "A#",
-      interval: 10,
-    },
-    {
-      name: "B",
-      interval: 11,
-    },
-  ];
+const keys = [
+  {
+    name: "C",
+    interval: 0,
+  },
+  {
+    name: "C#",
+    interval: 1,
+  },
+  {
+    name: "D",
+    interval: 2,
+  },
+  {
+    name: "D#",
+    interval: 3,
+  },
+  {
+    name: "E",
+    interval: 4,
+  },
+  {
+    name: "F",
+    interval: 5,
+  },
+  {
+    name: "F#",
+    interval: 6,
+  },
+  {
+    name: "G",
+    interval: 7,
+  },
+  {
+    name: "G#",
+    interval: 8,
+  },
+  {
+    name: "A",
+    interval: 9,
+  },
+  {
+    name: "A#",
+    interval: 10,
+  },
+  {
+    name: "B",
+    interval: 11,
+  },
+];
+const tone = ["major", "minor"];
+const majorScales = [
+  "lydian",
+  "major",
+  "major blues",
+  "major pentatonic",
+  "mixolydian",
+];
+const minorScales = [
+  "harmonic minor",
+  "melodic minor",
+  "minor",
+  "minor blues",
+  "minor pentatonic",
+];
 
+async function main() {
+  const selectedKey = await selectKey();
+  const selectedTone = await selectTone();
+  const selectedScale = await selectScale(selectedTone);
+
+  const fingerboards = await calcFingerboards(
+    selectedScale,
+    selectedKey.interval
+  );
+
+  await fingerboards.forEach((fingerboard) => {
+    fingerboard.push(fingerboard[0]);
+    console.log(fingerboard.join("|"));
+  });
+  console.log("   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12");
+}
+
+async function selectKey() {
   const selectedKey = await prompt({
     type: "select",
     name: "interval",
@@ -65,63 +97,87 @@ async function main() {
     },
   });
 
-  // const toneSelector = new Select({
-  //   name: "tone",
-  //   message: "Pick a tone",
-  //   choices: ["major", "minor"],
-  // });
+  if (selectedKey.interval === "") {
+    selectedKey.interval = 0;
+  }
 
-  // let selectedTone;
-  // await toneSelector
-  //   .run()
-  //   .then((answer) => {
-  //     console.log("Answer:", answer);
-  //     selectedTone = answer;
-  //   })
-  //   .catch(console.error);
-
-  // if (selectedTone === "major") {
-  //   const majorScaleSelector = new Select({
-  //     name: "scale",
-  //     message: "Pick a major scale",
-  //     choices: ["standard", "pentatonic"],
-  //   });
-
-  //   await majorScaleSelector
-  //     .run()
-  //     .then((answer) => console.log("Answer:", answer))
-  //     .catch(console.error);
-  // } else {
-  //   const minorScaleSelector = new Select({
-  //     name: "scale",
-  //     message: "Pick a minor scale",
-  //     choices: ["standard", "pentatonic"],
-  //   });
-
-  //   await minorScaleSelector
-  //     .run()
-  //     .then((answer) => console.log("Answer:", answer))
-  //     .catch(console.error);
-  // }
-
-  const fingerboards = await calcFingerboards(selectedKey.interval);
-  console.log("###############");
-  console.log(fingerboards);
-
-  // fingerboards.forEach((fingerboard) => {});
-
-  console.log("---|-●-|---|-●-|---|---|-●-|---|-◎-|---|---|-●-|---");
-  console.log("---|-◎-|---|---|-●-|---|-●-|---|-●-|---|---|-●-|---");
-  console.log("-●-|---|---|-●-|---|-◎-|---|---|-●-|---|-●-|---|-●-");
-  console.log("---|-●-|---|-●-|---|-●-|---|---|-●-|---|-◎-|---|---");
-  console.log("---|-●-|---|-◎-|---|---|-●-|---|-●-|---|-●-|---|---");
-  console.log("---|-●-|---|-●-|---|---|-●-|---|-◎-|---|---|-●-|---");
-  console.log("   | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| 11| 12");
+  return selectedKey;
 }
 
-async function calcFingerboards(selectedInterval) {
-  let minorPentatonic = new MinorPentatonic();
-  return await minorPentatonic.shiftScale(selectedInterval);
+async function selectTone() {
+  const toneSelector = new Select({
+    name: "tone",
+    message: "Pick a tone",
+    choices: tone,
+  });
+
+  return await toneSelector
+    .run()
+    .then((answer) => {
+      return answer;
+    })
+    .catch(console.error);
+}
+
+async function selectScale(selectedTone) {
+  const scaleSelector = new Select({
+    name: "scale",
+    message: isMajor(selectedTone)
+      ? "Pick a major scale"
+      : "Pick a minor scale",
+    choices: isMajor(selectedTone) ? majorScales : minorScales,
+  });
+
+  return await scaleSelector
+    .run()
+    .then((answer) => {
+      return answer;
+    })
+    .catch(console.error);
+}
+
+async function calcFingerboards(selectedScale, selectedInterval) {
+  let scale;
+  switch (selectedScale) {
+    case "lydian":
+      scale = new MinorPentatonic();
+      break;
+    case "major":
+      scale = new MinorPentatonic();
+      break;
+    case "major blues":
+      scale = new MinorPentatonic();
+      break;
+    case "major pentatonic":
+      scale = new MinorPentatonic();
+      break;
+    case "mixolydian":
+      scale = new MinorPentatonic();
+      break;
+    case "harmonic minor":
+      scale = new MinorPentatonic();
+      break;
+    case "melodic minor":
+      scale = new MinorPentatonic();
+      break;
+    case "minor":
+      scale = new MinorPentatonic();
+      break;
+    case "minor blues":
+      scale = new MinorPentatonic();
+      break;
+    case "minor pentatonic":
+      scale = new MinorPentatonic();
+      break;
+    default:
+      console.error(`this scale is undefined. scale: ${scale}`);
+  }
+
+  return await scale.shiftScale(selectedInterval);
+}
+
+function isMajor(tone) {
+  return tone === "major";
 }
 
 main();
