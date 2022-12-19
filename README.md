@@ -1,4 +1,4 @@
-<h1 align="center">🎸 guitar-scale 🎸</h1>
+<h1 align="center">🎸 guitar-scale-note 🎸</h1>
 <br>
 
 <p align="center">
@@ -11,7 +11,7 @@
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install guitar-scale --save
+$ npm install guitar-scale-note --save
 ```
 
 <br>
@@ -19,8 +19,8 @@ $ npm install guitar-scale --save
 ## ❯ Usage
 
 ```javascript
-const guitar-scale = require("guitar-scale");
-guitar-scale();
+const guitarScaleNote = require("guitar-scale-note");
+guitarScaleNote();
 ```
 
 ### First
