@@ -205,4 +205,6 @@ async function calcFingerboards(selectedScale, selectedInterval) {
   return await scale.shiftScale(selectedInterval);
 }
 
-main();
+module.exports = () => {
+  main();
+};

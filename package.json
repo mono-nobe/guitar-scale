@@ -1,8 +1,8 @@
 {
   "name": "guitar-scale",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This helps you memorize guitar scales.\nSelecting a scale displays the points on the fingerboard",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/mono-nobe/guitar-scale.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": ["guitar", "scale"],
+  "author": "mononobe",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mono-nobe/guitar-scale/issues"
   },
