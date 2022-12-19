@@ -56,3 +56,23 @@ Please pick a key of your choice.
 #### If you pick 24 fret ✌️✌️
 
 <img width="719" alt="スクリーンショット 2022-12-19 12 34 48" src="https://user-images.githubusercontent.com/94843475/208343878-6c6a507b-7f0e-4e36-8775-bf644c789d2a.png">
+
+## ❯ Scales
+
+Here are the available scales. 🤳
+
+### major 😆
+
+- lydian
+- major
+- major blues
+- major pentatonic
+- mixolydian
+
+### minor 😂
+
+- harmonic minor
+- melodic minor
+- minor
+- minor blues
+- minor pentatonic
