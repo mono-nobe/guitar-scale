@@ -1,6 +1,6 @@
 {
   "name": "guitar-scale-note",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This helps you memorize guitar scales.\nSelecting a scale displays the points on the fingerboard",
   "main": "./src/index.js",
   "scripts": {
